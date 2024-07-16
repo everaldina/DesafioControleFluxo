@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -14,24 +15,38 @@ import java.util.Scanner;
 public class Contador {
     public static void main(String[] args) {
 		Scanner terminal = new Scanner(System.in);
-		System.out.println("Digite o primeiro parâmetro");
-		int parametroUm = terminal.??;
-		System.out.println("Digite o segundo parâmetro");
-		int parametroDois = terminal.??;
+        int parametroUm;
+        int parametroDois;
+
+        try{
+            System.out.print("Digite o primeiro parâmetro: ");
+            parametroUm = terminal.nextInt();
+            System.out.print("Digite o segundo parâmetro: ");
+            parametroDois = terminal.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Tipo de parâmetro inválido.");
+            terminal.close();
+            return;
+        }
 		
 		try {
-			//chamando o método contendo a lógica de contagem
 			contar(parametroUm, parametroDois);
-		
-		}catch (? exception) {
-			//imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
+		}catch (ParametrosInvalidosException exception) {
+			System.out.println(exception.getMessage());
 		}
+
+        terminal.close();
 		
 	}
 	static void contar(int parametroUm, int parametroDois ) throws ParametrosInvalidosException {
-		//validar se parametroUm é MAIOR que parametroDois e lançar a exceção
-		
-		int contagem = parametroDois - parametroUm;
-		//realizar o for para imprimir os números com base na variável contagem
+        if (parametroUm > parametroDois) {
+            throw new ParametrosInvalidosException();
+        }
+
+        int contagem = parametroDois - parametroUm;
+
+        for (int i = 1; i <= contagem; i++) {
+            System.out.println("Imprimindo o número "+ i);
+        }
 	}
 }
