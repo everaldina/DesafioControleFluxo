@@ -38,6 +38,13 @@ public class Contador {
         terminal.close();
 		
 	}
+
+    /**
+     * Método que realiza a contagem de 1 até N, onde N é a diferença entre o segundo e o primeiro parâmetro.
+     * @param parametroUm Primeiro parâmetro
+     * @param parametroDois Segundo parâmetro
+     * @throws ParametrosInvalidosException Caso o segundo parâmetro seja menor que o primeiro
+     */
 	static void contar(int parametroUm, int parametroDois ) throws ParametrosInvalidosException {
         if (parametroUm > parametroDois) {
             throw new ParametrosInvalidosException();
